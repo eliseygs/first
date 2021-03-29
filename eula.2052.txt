@@ -1,0 +1,39 @@
+  1 # /bin/bash
+  2 # this is bash`s fail
+  3 
+  4 if [[ !$HOMEDIR/davecoffeeshop.db ]];
+  5 then
+  6         > $HOMEDIR/davecoffeeshop.db
+  7 fi
+  8 echo "Welcome to the Dave Coffeeshop!"
+  9 
+ 10 echo "To log order, enter LOG"
+ 11 echo "To end session, enter EOS"
+ 12 echo "To end business day, enter EOD" 
+ 13 
+ 14 while read LINE
+ 15 do
+ 16   
+ 17         if [ "$LINE" == "EOS" ];
+ 18         then 
+ 19                 break
+ 20         fi
+ 21         if [ "$LINE" == "EOD" ];
+ 22         then 
+ 23                 cat $HOMEDIR/davecoffeeshop.db
+ 24                 exit
+ 25         fi
+ 26 
+ 27         if [ "$LINE" == "LOG" ];
+ 28         then 
+ 29           echo "Barista name and key:"
+ 30           read LINE;    
+ 31           read LINE1;
+ 32           echo " $LINE  $LINE1 ">> $HOMEDIR/davecoffeeshop.db
+ 33           echo "Order was saved!"
+ 34         else
+ 35           echo "Barista name and key:"
+ 36           read LINE;
+ 37           read LINE;
+ 38         fi
+ 39 done
